@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista Utenti</title>
+</head>
+<body>
+  <h1>Lista degli Utenti Registrati</h1>
+  <div id="listaUtenti"></div>
+
+  <script>
+    window.onload = function() {
+      const utenti = JSON.parse(localStorage.getItem("utenti")) || [];
+
+      const listaDiv = document.getElementById("listaUtenti");
+      
+      if (utenti.length === 0) {
+        listaDiv.innerHTML = "<p>Nessun utente registrato.</p>";
+      } else {
+        let htmlContent = "<ul>";
+        utenti.forEach(function(utente) {
+          htmlContent += `<li><strong>Nome:</strong> ${utente.nome} <strong>Cognome:</strong> ${utente.cognome} <strong>Email:</strong> ${utente.email}</li>`;
+        });
+        htmlContent += "</ul>";
+
+        listaDiv.innerHTML = htmlContent;
+      }
+    };
+  </script>
+</body>
+</html>
